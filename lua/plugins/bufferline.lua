@@ -7,6 +7,7 @@ return {
 		options = {
 			show_close_icons = false,
 			separator_style = "slope",
+			underline_indicator = true,
 			hover = {
 				enabled = true,
 				delay = 0,
