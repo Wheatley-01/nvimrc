@@ -23,6 +23,11 @@ return {
 			},
 
 			server = {
+				diagnostics = {
+					globals = {
+						"warn",
+					},
+				},
 				settings = {
 					["luau-lsp"] = {
 						inlayHints = {
@@ -100,6 +105,25 @@ return {
 							})
 						else
 							require("lspconfig")[server_name].setup({})
+						end
+
+						if server_name == "luau_ls" then
+							local lspconfig = require("lspconfig")
+							lspconfig.lua_ls.setup({
+								settings = {
+									Lua = {
+										diagnostics = {
+											globals = {
+												"vim",
+												"it",
+												"describe",
+												"before_each",
+												"after_each",
+											},
+										},
+									},
+								},
+							})
 						end
 					end,
 				},

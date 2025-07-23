@@ -20,8 +20,8 @@ vim.opt.updatetime = 50
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.keymap.set("n", "<leader>f", function()
-    require("conform").format {
-        timeout_ms = 2000,
-        lsp_format = "fallback",
-    }
+	require("conform").format({
+		timeout_ms = 2000,
+		lsp_format = "fallback",
+	})
 end)
