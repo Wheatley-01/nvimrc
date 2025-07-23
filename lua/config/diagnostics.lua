@@ -15,7 +15,6 @@ function M.setup()
 		virtual_text = true,
 		signs = true,
 		underline = true,
-		update_in_insert = false,
 		severity_sort = true,
 	})
 
@@ -24,11 +23,6 @@ function M.setup()
 		callback = function()
 			-- Check if an LSP client is attached to the buffer
 			local bufnr = vim.api.nvim_get_current_buf()
-			local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
-			if #clients == 0 then
-				-- print("No LSP clients attached, skipping notification")
-				return
-			end
 
 			-- Construct parameters manually
 			local uri = vim.uri_from_bufnr(bufnr)
@@ -43,9 +37,6 @@ function M.setup()
 			}
 
 			-- Notify LSP server of changes
-			for _, client in ipairs(clients) do
-				client.notify("textDocument/didChange", params)
-			end
 		end,
 	})
 end

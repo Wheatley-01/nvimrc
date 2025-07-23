@@ -4,7 +4,10 @@ return {
 	---@type oil.SetupOpts
 	opts = {
 		default_file_explorer = true,
-		skip_confirm_for_simple_edits = false,
+		skip_confirm_for_simple_edits = true,
+		view_options = {
+			show_hidden = false,
+		},
 	},
 	-- Optional dependencies
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
