@@ -32,8 +32,15 @@ return {
 				sourcemap_file = "sourcemap.json",
 				rojo_project_file = "default.project.json",
 			},
-			fflags = {
-				enable_new_solver = true,
+			completion = {
+				autocompleteEnd = true,
+				addParantheses = true,
+				imports = {
+					enabled = true,
+				},
+			},
+			require = {
+				mode = "relativeToFile",
 			},
 		})
 

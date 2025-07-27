@@ -23,10 +23,22 @@ vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { desc = "New tab" })
 vim.keymap.set("n", "<leader>sv", ":vnew<CR>", { desc = "New vertical split" })
 vim.keymap.set("n", "<leader>sh", ":new<CR>", { desc = "New horizontal split" })
 
-vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", ":bprev<CR>", { desc = "Previous buffer" })
+-- Navigate to buffers by their position in the bufferline
+for i = 1, 9 do
+	vim.keymap.set("n", "<leader>" .. i, function()
+		require("bufferline").go_to(i, true)
+	end, { desc = "Go to buffer " .. i })
+end
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
-vim.keymap.set("n", "<leader>bb", ":buffers<CR>", { desc = "List buffers" })
+
+vim.keymap.set("n", "<leader>w", function()
+	vim.diagnostic.open_float(nil, {
+		border = "rounded",
+		style = "minimal",
+
+		focusable = false,
+	})
+end, { silent = true })
 
 -- Add this to your init.lua or keymaps file
 vim.api.nvim_create_autocmd("FileType", {
