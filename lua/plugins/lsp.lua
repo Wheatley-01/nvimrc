@@ -40,7 +40,7 @@ return {
 				},
 			},
 			require = {
-				mode = "relativeToFile",
+				mode = "absolute",
 			},
 		})
 

@@ -8,6 +8,7 @@ vim.opt.softtabstop = 4
 
 vim.opt.smartindent = true
 vim.opt.wrap = false
+vim.opt.swapfile = false
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -19,9 +20,9 @@ vim.opt.updatetime = 50
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
-vim.keymap.set("n", "<leader>f", function()
+vim.keymap.set("n", "<leader>ff", function()
 	require("conform").format({
-		timeout_ms = 2000,
+		timeout_ms = 50,
 		lsp_format = "fallback",
 	})
 end)

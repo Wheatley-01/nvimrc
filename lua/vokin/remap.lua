@@ -17,11 +17,27 @@ vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>y", '"+Y')
 
+vim.keymap.set("n", "zR", function()
+	require("ufo").openAllFolds()
+end)
+vim.keymap.set("n", "zM", function()
+	require("ufo").closeAllFolds()
+end)
+vim.keymap.set("n", "zK", function()
+	local winid = require("ufo").peekFoldedLinesUnderCursor()
+	if not winid then
+		vim.lsp.buf.hover()
+	end
+end, { desc = "peek fold" })
+
 -- In your init.lua or keymaps file
 vim.keymap.set("n", "<leader>n", ":enew<CR>", { desc = "New buffer" })
 vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { desc = "New tab" })
 vim.keymap.set("n", "<leader>sv", ":vnew<CR>", { desc = "New vertical split" })
 vim.keymap.set("n", "<leader>sh", ":new<CR>", { desc = "New horizontal split" })
+
+vim.keymap.set("n", "<CR>", "m`o<Esc>``")
+vim.keymap.set("n", "<S-CR>", "m`O<Esc>``")
 
 -- Navigate to buffers by their position in the bufferline
 for i = 1, 9 do
@@ -41,18 +57,3 @@ vim.keymap.set("n", "<leader>w", function()
 end, { silent = true })
 
 -- Add this to your init.lua or keymaps file
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "cpp",
-	callback = function()
-		vim.keymap.set("n", "<F5>", function()
-			vim.cmd("w") -- save file
-			vim.cmd("below split | resize 10 | terminal")
-			local filename = vim.fn.expand("%:t:r") -- filename without extension
-			local compile_cmd = string.format("g++ -o %s %s", filename, vim.fn.expand("%:t"))
-
-			-- Send commands to terminal
-			vim.api.nvim_chan_send(vim.b.terminal_job_id, compile_cmd .. "\n")
-			vim.api.nvim_chan_send(vim.b.terminal_job_id, string.format("./%s\n", filename))
-		end, { desc = "Compile and run C++ (interactive)" })
-	end,
-})

@@ -3,13 +3,13 @@ return {
 	lazy = false,
 	opts = {
 		formatters_by_ft = {
-			lua = { "stylua" },
 			luau = { "stylua" },
+			lua = { "stylua" },
 			cpp = { "clang_format" },
 		},
 
 		format_on_save = {
-			timeout_ms = 1000,
+			timeout_ms = 100,
 			lsp_format = "fallback",
 		},
 	},
