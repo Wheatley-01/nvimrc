@@ -96,5 +96,8 @@ return {
 		opts = { theme = "dark", borders = true },
 		dependencies = lualine_dependency,
 	},
-	{ "projekt0n/github-nvim-theme", name = "github" },
+	{
+		"projekt0n/github-nvim-theme",
+		name = "github",
+	},
 }

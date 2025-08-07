@@ -23,6 +23,9 @@ end)
 vim.keymap.set("n", "zM", function()
 	require("ufo").closeAllFolds()
 end)
+
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>")
+
 vim.keymap.set("n", "zK", function()
 	local winid = require("ufo").peekFoldedLinesUnderCursor()
 	if not winid then
