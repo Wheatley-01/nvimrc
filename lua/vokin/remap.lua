@@ -58,5 +58,3 @@ vim.keymap.set("n", "<leader>w", function()
 		focusable = false,
 	})
 end, { silent = true })
-
--- Add this to your init.lua or keymaps file

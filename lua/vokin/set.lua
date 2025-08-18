@@ -26,3 +26,10 @@ vim.keymap.set("n", "<leader>ff", function()
 		lsp_format = "fallback",
 	})
 end)
+
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	pattern = { "*.lua", "*.luau" },
+-- 	callback = function()
+-- 		vim.lsp.buf.format({ async = true })
+-- 	end,
+-- })

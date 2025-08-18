@@ -1,15 +1,13 @@
 local dataFilePath = vim.fn.stdpath("data") .. "\\colors"
 
 local data = {
-	default = "kanagawa",
+	default = "dracula",
 	background = "dark",
 }
 
 local function applyColors(color, mode)
 	vim.cmd.colorscheme(color)
 	vim.o.background = mode
-
-	require("lualine").setup()
 
 	--vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -32,6 +30,9 @@ function ColorMyPencils(color, mode)
 		error("could not save colorscheme", 1)
 		return
 	end
+
+	require("lualine").setup()
+
 	file:write(color .. "\n" .. mode .. "\n")
 	file:close()
 end
@@ -56,7 +57,8 @@ end
 
 return {
 	lazy = false,
-	priorty = 100,
+	priority = 100,
+
 	{
 		"Mofiqul/dracula.nvim",
 		name = "dracula",
@@ -90,14 +92,38 @@ return {
 		},
 		dependencies = lualine_dependency,
 	},
+
 	{
 		"kepano/flexoki-neovim",
 		name = "flexoki",
 		opts = { theme = "dark", borders = true },
 		dependencies = lualine_dependency,
 	},
+
 	{
 		"projekt0n/github-nvim-theme",
 		name = "github",
+	},
+
+	{
+		"f4z3r/gruvbox-material.nvim",
+		priority = 1000,
+		config = true,
+	},
+
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+	},
+
+	{
+		"AlexvZyl/nordic.nvim",
+		priority = 1000,
+	},
+
+	{
+		"folke/tokyonight.nvim",
+		priority = 1000,
 	},
 }
